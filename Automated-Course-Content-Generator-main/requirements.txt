@@ -1,0 +1,10 @@
+streamlit
+openai
+python-dotenv
+fpdf
+gTTS
+SpeechRecognition
+pydub
+pandas
+Pillow
+requests
