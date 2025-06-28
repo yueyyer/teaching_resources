@@ -8,3 +8,4 @@ pydub
 pandas
 Pillow
 requests
+markdown
