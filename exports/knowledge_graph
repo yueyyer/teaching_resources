@@ -1,0 +1,47 @@
+digraph "中国古代史" {
+	graph [bgcolor=transparent rankdir=LR]
+	subgraph "cluster_基础概念" {
+		color=lightgray fillcolor="#FFD54F" label="基础概念" style=filled
+		"主题定义"
+		"历史背景"
+		"基本原理"
+	}
+	subgraph "cluster_核心理论" {
+		color=lightgray fillcolor="#81C784" label="核心理论" style=filled
+		"理论框架"
+		"关键模型"
+		"应用场景"
+	}
+	subgraph "cluster_实践应用" {
+		color=lightgray fillcolor="#E0E0E0" label="实践应用" style=filled
+		"案例分析"
+		"问题解决"
+		"实践技巧"
+	}
+	subgraph "cluster_高级技能" {
+		color=lightgray fillcolor="#E0E0E0" label="高级技能" style=filled
+		"高级方法"
+		"工具使用"
+		"创新思维"
+	}
+	subgraph "cluster_综合项目" {
+		color=lightgray fillcolor="#E0E0E0" label="综合项目" style=filled
+		"项目规划"
+		"资源整合"
+		"成果展示"
+	}
+	"主题定义" -> "基本原理" [label="是基础"]
+	"历史背景" -> "基本原理" [label="提供背景支持"]
+	"基本原理" -> "理论框架" [label="构成理论基础"]
+	"理论框架" -> "关键模型" [label="包含具体模型"]
+	"关键模型" -> "应用场景" [label="指导实际应用"]
+	"理论框架" -> "案例分析" [label="用于分析案例"]
+	"案例分析" -> "问题解决" [label="提升问题解决能力"]
+	"问题解决" -> "实践技巧" [label="形成实用技能"]
+	"实践技巧" -> "高级方法" [label="为进阶学习奠定基础"]
+	"高级方法" -> "工具使用" [label="需要工具辅助"]
+	"工具使用" -> "创新思维" [label="促进创新思考"]
+	"创新思维" -> "项目规划" [label="指导项目设计"]
+	"项目规划" -> "资源整合" [label="需要资源协调"]
+	"资源整合" -> "成果展示" [label="最终呈现形式"]
+}

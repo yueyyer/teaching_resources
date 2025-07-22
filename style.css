@@ -1,0 +1,141 @@
+
+/* 基础样式 */
+:root {
+    --primary-dark: #1B5E20;
+    --primary: #2E7D32;
+    --primary-light: #4CAF50;
+    --secondary-light: #C8E6C9;
+    --background-light: #F1F8E9;
+    --text-dark: #212121;
+    --text-light: #FFFFFF;
+    --shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    --transition: all 0.3s ease;
+}
+
+/* 侧边栏样式 */
+[data-testid="stSidebar"] {
+    background: linear-gradient(180deg, var(--primary-dark) 0%, var(--primary) 100%);
+    padding: 1.5rem 1rem;
+    box-shadow: var(--shadow);
+    border-radius: 0 15px 15px 0;
+}
+
+[data-testid="stSidebar"] .stButton button {
+    background-color: var(--primary-light);
+    color: var(--text-light);
+    border-radius: 8px;
+    padding: 0.5rem 1rem;
+    width: 100%;
+    transition: var(--transition);
+    border: none;
+    font-weight: 600;
+    box-shadow: var(--shadow);
+}
+
+[data-testid="stSidebar"] .stButton button:hover {
+    background-color: var(--secondary-light);
+    color: var(--primary-dark);
+    transform: translateY(-2px);
+}
+
+[data-testid="stSidebar"] .stMarkdown h1, 
+[data-testid="stSidebar"] .stMarkdown h2, 
+[data-testid="stSidebar"] .stMarkdown h3 {
+    color: var(--text-light);
+    text-align: center;
+    margin-bottom: 1.5rem;
+}
+
+/* 模块切换按钮样式 */
+.module-toggle {
+    background-color: var(--primary-light);
+    border-radius: 8px;
+    padding: 0.5rem;
+    text-align: center;
+    margin-bottom: 1.5rem;
+    box-shadow: var(--shadow);
+    transition: var(--transition);
+}
+
+.module-toggle:hover {
+    background-color: var(--secondary-light);
+    transform: scale(1.02);
+}
+
+/* 导航菜单样式 */
+.custom-nav {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.custom-nav-item {
+    padding: 0.8rem 1.2rem;
+    border-radius: 8px;
+    background-color: rgba(255, 255, 255, 0.1);
+    color: var(--text-light);
+    text-decoration: none;
+    transition: var(--transition);
+    display: flex;
+    align-items: center;
+    font-weight: 500;
+}
+
+.custom-nav-item:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+    transform: translateX(5px);
+}
+
+.custom-nav-item.active {
+    background-color: var(--secondary-light);
+    color: var(--primary-dark);
+    font-weight: 600;
+}
+
+.custom-nav-item i {
+    margin-right: 10px;
+    font-size: 1.2rem;
+}
+
+/* 分割线样式 */
+.divider {
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.5), transparent);
+    margin: 1.5rem 0;
+}
+
+/* 信息框样式 */
+.info-box {
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    padding: 1rem;
+    font-size: 0.85rem;
+    color: var(--text-light);
+    border-left: 3px solid var(--primary-light);
+    margin-top: 1.5rem;
+}
+
+/* 图标样式 */
+.icon {
+    font-size: 1.2rem;
+    margin-right: 10px;
+    vertical-align: middle;
+}
+
+/* 标题样式 */
+.sidebar-title {
+    text-align: center;
+    color: white;
+    padding-bottom: 15px;
+    margin-bottom: 20px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    font-size: 1.5rem;
+    font-weight: 700;
+}
+
+/* 响应式调整 */
+@media (max-width: 768px) {
+    [data-testid="stSidebar"] {
+        border-radius: 0;
+    }
+}
