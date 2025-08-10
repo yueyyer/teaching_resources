@@ -10,6 +10,7 @@ from word2picture import generate_picture_by_text
 from ocr_scenes_demo import ocr_image_url
 from sidebar_css import load_sidebar_css
 import requests
+import wikipedia
 
 # 定义MyFPDF用于支持write_html
 class MyFPDF(FPDF, HTMLMixin):
@@ -1069,18 +1070,24 @@ def page_chat_interaction():
 
     # 输入框
     user_input = st.text_input("请输入你的对话内容", key="chat_input")
+    use_kb = st.checkbox("结合知识库辅助回答（维基百科+本地资源）", value=True)
     if st.button("发送", use_container_width=True):
         if user_input.strip():
-            # 保存用户输入
+            kb_text = ""
+            if use_kb:
+                local_kb = search_local_resources(user_input)
+                wiki_kb = search_wikipedia(user_input)
+                if local_kb:
+                    kb_text += f"本地资源相关内容：\n{local_kb}\n"
+                if wiki_kb:
+                    kb_text += f"维基百科相关内容：\n{wiki_kb}\n"
             st.session_state.chat_history.append({"role": role, "content": user_input})
-            # 构建对话上下文
-            
-            # 构建对话上下文
             messages = [{"role": "system", "content": f"你现在扮演一名{ai_role}，请用{ai_role}的身份与对方对话。"}]
             for msg in st.session_state.chat_history:
                 messages.append({"role": "user", "content": f"{msg['role']}：{msg['content']}"})
-            # ...existing code...
-            # AI回复
+            # 加入知识库内容
+            if kb_text:
+                messages.append({"role": "system", "content": f"以下是知识库检索到的相关内容，可用于辅助回答：\n{kb_text}"})
             try:
                 response = client.chat.completions.create(
                     model=st.session_state.openai_model,
@@ -1681,6 +1688,27 @@ def page_personalized_learning():
             </div>
         </div>
         """, unsafe_allow_html=True)
+
+def search_wikipedia(query, lang="zh"):
+    """从维基百科检索知识"""
+    try:
+        wikipedia.set_lang(lang)
+        summary = wikipedia.summary(query, sentences=3, auto_suggest=False)
+        return summary
+    except Exception as e:
+        return ""
+
+def search_local_resources(query):
+    """从本地资源库检索相关内容"""
+    results = get_resources_from_db(search_term=query)
+    if not results:
+        return ""
+    texts = []
+    for res in results[:3]:
+        title, content = res[1], res[7]
+        if content:
+            texts.append(f"【{title}】{content[:300]}")
+    return "\n".join(texts)
 
 def generate_learning_path(topic, difficulty):
     """生成个性化学习路径"""
