@@ -36,8 +36,8 @@ st.set_page_config(
     initial_sidebar_state="expanded"
 )
 
-# --- Prompts (建议放在单独的prompts.py文件中) ---
-# 为了方便你直接运行，我暂时把它们放在这里
+# --- Prompts---
+
 
 PROMPT_TEMPLATES = {
     "课程大纲": """
